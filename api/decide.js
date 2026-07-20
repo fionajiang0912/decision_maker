@@ -36,8 +36,10 @@ function secondsUntilUtcMidnight() {
 // 若未配置 Upstash 环境变量，则降级为“不限流但正常工作”，并在响应头标注。
 
 async function checkRateLimit(ip) {
-  const url = process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  // Vercel Marketplace 的 Upstash 集成注入的是 KV_REST_API_URL/TOKEN；
+  // 手动接 Upstash 时通常叫 UPSTASH_REDIS_REST_URL/TOKEN。两种都支持。
+  const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
 
   // 未接 KV：降级放行（交付说明里已诚实标注此情况）
   if (!url || !token) {
