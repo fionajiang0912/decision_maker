@@ -1,0 +1,15 @@
+# 依赖
+node_modules/
+
+# 环境变量 / 密钥 —— 绝不入库（DeepSeek key 只在这里，推上去会泄露）
+.env
+.env.*
+.env.local
+
+# Vercel
+.vercel/
+
+# 系统 / 编辑器杂物
+.DS_Store
+Thumbs.db
+*.log

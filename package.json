@@ -1,0 +1,9 @@
+{
+  "name": "decision-maker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "一页纸决策器 —— 纠结的事，包工头替你拍板",
+  "engines": {
+    "node": ">=18"
+  }
+}
