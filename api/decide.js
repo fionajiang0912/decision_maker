@@ -178,8 +178,9 @@ module.exports = async function handler(req, res) {
     return res.end(JSON.stringify({ error: "先说说你纠结啥，我才好拍板呀" }));
   }
   if (text.length > MAX_LEN) {
-    // 后端也截断，双保险，绝不因超长而崩
-    text = text.slice(0, MAX_LEN);
+    // 超长直接拒绝，绝不放进模型——防止绕过前端灌爆烧账单
+    res.statusCode = 400;
+    return res.end(JSON.stringify({ error: "话太多啦，挑最纠结那句给我就行" }));
   }
 
   // 限流
